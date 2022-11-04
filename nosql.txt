@@ -1,0 +1,53 @@
+use funcionario;
+
+db.funcionario.insertOne({ nome: "Davi", telefone: "(83) 99904-0712", cargo: "CEO", cpf: "99912311", id: "1"})
+
+{ acknowledged: true,
+  insertedId: ObjectId("632131ef14eb24fe7f4b4f76") }
+
+db.funcionario.insertMany({
+nome: "George", 
+telefone: "(81) 98604-9448", 
+cpf: "9991213", 
+cargo: "Gerente",
+id: "2"
+},
+{
+nome: "Maira", 
+telefone: "(51) 99922-0411", 
+cpf: "9991231", 
+cargo: "Diretora",
+id: "3"
+}
+}
+)
+
+db.funcionario.find({nome: "Davi"})
+
+{ _id: ObjectId("632131ef14eb24fe7f4b4f76"),
+  nome: 'Davi',
+  telefone: '(83) 99904-0712',
+  cargo: 'CEO',
+  cpf: '99912311',
+  id: '1' }
+db.funcionario.find({cargo: "CEO"})
+
+{ _id: ObjectId("632131ef14eb24fe7f4b4f76"),
+  nome: 'Davi',
+  telefone: '(83) 99904-0712',
+  cargo: 'CEO',
+  cpf: '99912311',
+  id: '1' }
+
+db.funcionario.updateOne(
+{ "nome" : "Davi" },
+{ $set: { "nome" : "Davi Queiroz", "cargo" : "CTO" } }
+);
+
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+
+
